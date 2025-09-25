@@ -12,6 +12,8 @@ To reproduce https://github.com/beryx/badass-jlink-plugin/issues/299[badass-jlin
 ./gradlew -PjavaToolchainVersion=24 jlink
 ----
 
+You can also view the https://github.com/msgilligan/gradle-jlink-jep-493-sample/actions[GitHub Actions] where the Temurin 21 jobs in the matrix succeed and the Temurin 25 jobs fail.
+
 
 
 
