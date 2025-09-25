@@ -1,0 +1,17 @@
+= gradle-jlink-jep-493-sample
+
+To build successfully with Temurin JDK 21:
+
+----
+./gradlew -PjavaToolchainVersion=21 jlink
+----
+
+To reproduce [https://github.com/beryx/badass-jlink-plugin/issues/299](badass-jlink-plugin #299) with JDK 24+, use:
+
+----
+./gradlew -PjavaToolchainVersion=24 jlink
+----
+
+
+
+
