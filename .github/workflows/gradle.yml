@@ -1,0 +1,29 @@
+name: Gradle Build
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        java: ['21', '25']
+        distribution: ['temurin']
+      fail-fast: false
+    name: ${{ matrix.os }} JDK ${{ matrix.distribution }} ${{ matrix.java }}
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v4
+    - name: Set up JDK (via matrix) for Gradle and Gradle Java Toolchain
+      id: setupjdk
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ matrix.distribution }}
+        java-version: ${{ matrix.java }}
+    - name: Verify Gradle Wrapper
+      uses: gradle/actions/wrapper-validation@v4
+    - name: Build with Gradle
+      shell: bash
+      run: |
+        ./gradlew -PjavaToolchainVersion=${{ matrix.java }} jlink
